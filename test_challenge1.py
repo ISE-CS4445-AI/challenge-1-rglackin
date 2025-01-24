@@ -44,6 +44,12 @@ def test_hidden_data_accuracy():
     # loading the *full* dataset
     data = load_breast_cancer()
     X_full, y_full = data.data, data.target
+    features = data.feature_names
+    feature_list = ['worst concave points', 'worst perimeter',
+       'mean concave points', 'worst radius', 'mean perimeter', 'worst area',
+       'mean radius', 'mean area', 'mean concavity', 'worst concavity']
+    feature_indices = [list(features).index(feature) for feature in feature_list]
+    X_full = X_full[:, feature_indices]
     
     X_hidden = X_full[row_list]
     y_hidden = y_full[row_list]
